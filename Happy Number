@@ -1,0 +1,24 @@
+class Solution:
+    # @param {integer} n
+    # @return {boolean}
+    def isHappy(self, n):
+        nums=str(n)
+        result=0
+        m=0
+        loop=[nums]
+        while result==0:
+            for num in nums:
+                m=m+int(num)**2
+            if m==1:
+                result=1
+            else:
+                nums=str(m)
+                if nums in loop:
+                    result=-1
+                else:
+                    loop.append(nums)
+            m=0
+        if result==1:
+            return True
+        else:
+            return False
