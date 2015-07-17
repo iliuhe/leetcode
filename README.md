@@ -1,0 +1,2 @@
+# leetcode
+print 'LEETCODE practise'
