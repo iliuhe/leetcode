@@ -1,0 +1,18 @@
+class Solution:
+    # @param {integer} n
+    # @return {string}
+    def convertToTitle(self, n):
+        result,ret=[],''
+        if n<=26:
+            return chr(n+64)
+        while n>26:
+            a,b=n/26,n%26
+            if b==0:
+                a=a-1
+                result.insert(0,chr(90))
+            else:
+                result.insert(0,chr(b+64))
+            n=a
+        result.insert(0,chr(a+64))
+        return ret.join(result)
+            
