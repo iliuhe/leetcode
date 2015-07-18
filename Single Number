@@ -1,6 +1,15 @@
 class Solution:
     # @param {integer[]} nums
     # @return {integer}
+    
+# XOR method
+    def singleNumber(self, nums):
+        ans=0
+        for i in nums:
+            ans^=i
+        return ans
+# Sort
+    '''
     def singleNumber(self, nums):
         if len(nums)==1:
             return nums[0]
@@ -11,3 +20,4 @@ class Solution:
             if i==len(nums)-1:
                 return nums[-1]
         return nums[i]
+    '''
