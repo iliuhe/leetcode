@@ -20,4 +20,4 @@ class Solution:
             if i==len(nums)-1:
                 return nums[-1]
         return nums[i]
-    '''
+    ''' 
