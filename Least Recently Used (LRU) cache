@@ -1,0 +1,30 @@
+from collections import OrderedDict
+## OrderedDict for popping Last IN First Out
+class LRUCache:
+
+    # @param capacity, an integer
+    def __init__(self, capacity):
+        self.capacity=capacity
+        self.cache=OrderedDict()
+
+    # @return an integer
+    def get(self, key):
+        if key in self.cache:
+            value=self.cache[key]
+            del self.cache[key]
+# take value out of cache and append to the end
+            self.cache[key]=value
+        else:
+            value=-1
+        return value
+
+    # @param key, an integer
+    # @param value, an integer
+    # @return nothing
+    def set(self, key, value):
+# set the new value at the end 
+        if key in self.cache:
+            del self.cache[key]
+        self.cache[key]=value
+        if len(self.cache)>self.capacity:
+            self.cache.popitem(False) #LIFO
