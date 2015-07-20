@@ -1,0 +1,19 @@
+import math
+class Solution:
+    # @param {integer} n
+    # @param {integer} k
+    # @return {string}
+    def getPermutation(self, n, k):
+    #generate a list +1
+        nums=range(1,n+1)
+        result=''
+        k-=1# for remender 0 case
+        while n>0:
+            n-=1
+            #a, k = divmod(k, math.factorial(n))
+            a=k/math.factorial(n)
+            k=k%math.factorial(n)
+            result+=str(nums[a])
+            nums.remove(nums[a])
+        return result
+                
