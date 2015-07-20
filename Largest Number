@@ -11,4 +11,11 @@ class Solution:
                 if numss[i]+numss[j]<numss[j]+numss[i]:
                     numss[i],numss[j]=numss[j],numss[i]
         return ''.join(numss)
-            
+        
+## applying sort and cmp, little bit faster
+     def largestNumber(self, nums):
+        if set(nums)==set([0]):
+            return '0'
+        n=map(str,nums)
+        n.sort(cmp=lambda a,b: cmp(a+b,b+a),reverse=True)
+        return ''.join(n)
