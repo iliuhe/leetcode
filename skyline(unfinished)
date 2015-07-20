@@ -74,7 +74,7 @@ def select_points(a):
                 result.append([width[1],a[i][2]])
                 width[1]=a[i][1]
         i+=1
-        #print result
+        #print result 
     result.append([b[-1][1],0])
     return sorted(result,key=lambda i:i[0])
     
