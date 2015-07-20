@@ -77,4 +77,35 @@ def select_points(a):
         #print result
     result.append([b[-1][1],0])
     return sorted(result,key=lambda i:i[0])
-        
+    
+'''        # copied on line
+from heapq import *
+
+def getSkyline(LRH):
+    skyline = []
+    i, n = 0, len(LRH)
+    liveHR = []
+    while i < n or liveHR:
+        print 'i  '+str(i)
+        if not liveHR or i < n and LRH[i][0] <= -liveHR[0][1]:# new left small than old right
+        # means adjacent
+            print 'a'
+            x = LRH[i][0]
+            print 'x   '+str(x)
+            while i < n and LRH[i][0] == x:#check if left same
+                heappush(liveHR, (-LRH[i][2], -LRH[i][1]))
+                i += 1
+        else:# not connected
+            print 'b'
+            x = -liveHR[0][1]
+            while liveHR and -liveHR[0][1] <= x:
+                heappop(liveHR)
+        print 'liveHR '+str(liveHR)
+        height = len(liveHR) and -liveHR[0][0]
+        print 'height  '+str(height)
+        if not skyline or height != skyline[-1][1]:
+            skyline += [x, height],
+        print skyline
+'''
+        print ' '
+    return skyline
