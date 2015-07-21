@@ -1,0 +1,23 @@
+    def getIntersectionNode(self, headA, headB):
+        pa,pb=headA,headB
+        lena,lenb=0,0
+        while pa:
+            pa=pa.next
+            lena+=1
+        while pb:
+            pb=pb.next
+            lenb+=1
+        while lena!=lenb:
+            if lena>lenb:
+                headA=headA.next
+                lena-=1
+            else:
+                headB=headB.next
+                lenb-=1
+        while lena==lenb:
+            if headA==headB:
+                return headA
+            else:
+                headA=headA.next
+                headB=headB.next
+        return None
