@@ -1,12 +1,16 @@
     def getIntersectionNode(self, headA, headB):
+    
+    # Method 1
         pa,pb=headA,headB
         lena,lenb=0,0
+        # get length of A and B
         while pa:
             pa=pa.next
             lena+=1
         while pb:
             pb=pb.next
             lenb+=1
+        # delete the front different parts until same length
         while lena!=lenb:
             if lena>lenb:
                 headA=headA.next
@@ -14,10 +18,44 @@
             else:
                 headB=headB.next
                 lenb-=1
+        # once same length, check if same value
         while lena==lenb:
-            if headA==headB:
+            if headA==headB:# if yes, return 
                 return headA
-            else:
+            else:# no, none
                 headA=headA.next
                 headB=headB.next
         return None
+
+
+        ########## time excessed
+        #add=[]
+        #while headA:
+            #add.append(id(headA))
+            #headA=headA.next
+        #while headB:
+            #if id(headB) in add:
+                #return headB
+            #else:
+                #headB=headB.next
+        #return None
+        ############
+        
+        
+    # Method 2
+        if not headA or not headB:
+            return None
+        A1,A2,B1=headA,False,headB
+        # A2 flag: if add B to the end of A, one chance
+        while 1:
+            if id(A1)==id(B1):# same address because of LINKED LIST!
+                return A1
+            A1,B1=A1.next,B1.next
+            if not A1:# A end, point to  headB
+                if A2==False:
+                    A2=True
+                    A1=headB
+                else:
+                    return None
+            if not B1:
+                B1=headA
