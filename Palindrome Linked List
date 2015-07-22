@@ -1,0 +1,40 @@
+class Solution:
+    # @param {ListNode} head
+    # @return {boolean}
+    def isPalindrome(self, head):
+    ## Method 1: space not O(1)
+        if not head:
+            return True
+        n=[]
+        while head:
+            n.append(head.val)
+            head=head.next
+        for i in range(len(n)/2+1):
+            if n[i]!=n[-i-1]:
+                return False
+        return True
+        
+      ## Method 2: two pointers 
+      def isPalindrome(self, head):
+        if not head or not head.next:
+            return True
+        # fast to end, slow to middle
+        slow,fast=head,head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        # reverse second half
+        p3=slow.next
+        slow.next=None
+        while p3:# 4 steps of reverse each unit
+            p4=p3.next
+            p3.next=slow
+            slow=p3
+            p3=p4
+        # conpaire 
+        while slow:
+            if slow.val!=head.val:
+                return False
+            slow=slow.next
+            head=head.next
+        return True
