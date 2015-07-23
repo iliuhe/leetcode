@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {void} Do not return anything, modify root in-place instead.
+    # add one dummy before the root of the tree
+    def __init__(self):
+        self.pre=TreeNode("dummy")
+        
+    def flatten(self, root):
+        if not root:
+            return
+        self.pre.right=root
+        self.pre.left=None
+        temp=root.right
+        self.pre=root
+        self.flatten(root.left)
+        self.flatten(temp)
