@@ -21,7 +21,7 @@ class Solution:
             result=[]
         return result # returned result will be added
     '''
-    # iterative
+    # iterative 1
     def inorderTraversal(self,root):
         waitlist,p,result=[],root,[]
         while waitlist or p:
@@ -36,3 +36,18 @@ class Solution:
             p=p.right
         return result
         
+    # iterative 2
+    def inorderTraversal(self,root):
+        if not root:
+            return []
+        waitlist,result=[(root,False)],[]
+        while waitlist:
+            p,visited=waitlist.pop()
+            if p:
+                if visited:
+                    result.append(p.val)
+                else:
+                    waitlist.append((p.right,False))
+                    waitlist.append((p,True))
+                    waitlist.append((p.left,False))
+        return result
