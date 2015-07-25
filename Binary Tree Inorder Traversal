@@ -8,7 +8,7 @@
 class Solution:
     # @param {TreeNode} root
     # @return {integer[]}
-    
+    '''
     # recursive
     def inorderTraversal(self, root):
         if root:
@@ -20,3 +20,19 @@ class Solution:
         else:
             result=[]
         return result # returned result will be added
+    '''
+    # iterative
+    def inorderTraversal(self,root):
+        waitlist,p,result=[],root,[]
+        while waitlist or p:
+            while p:
+                # order in waitlist decide the "inorder"
+                waitlist.append(p)
+                # find left edge node first
+                p=p.left
+            p=waitlist.pop()
+            result.append(p.val)
+            #then right
+            p=p.right
+        return result
+        
