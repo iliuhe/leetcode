@@ -1,0 +1,38 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {integer[]}
+    ''' recursive
+    def postorderTraversal(self, root):
+        result=[]
+        if root:
+            result.append(root.val)
+            # right first
+            if root.right:
+                result=self.postorderTraversal(root.right)+result
+            if root.left:
+                result=self.postorderTraversal(root.left)+result
+        return result
+    '''
+    # iterative
+    def postorderTraversal(self,root):
+        if not root:
+            return []
+        waitlist,result=[(root,False)],[]
+        while waitlist:
+            p,visited=waitlist.pop()
+            if p:
+                if not visited:
+                    waitlist.append((p,True))
+                    waitlist.append((p.right,False))
+                    waitlist.append((p.left,False))
+                else:
+                    result.append(p.val)
+        return result
+        
