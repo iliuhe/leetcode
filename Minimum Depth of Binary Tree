@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {integer}
+    def minDepth(self, root):
+        if not root:
+            return 0
+        depth=1
+        waitlist=[[root,depth]]
+        while waitlist:
+            temp,cur_depth=waitlist.pop()
+            if not temp.left and not temp.right:
+                # once one node get both left and right nodes None
+                # it is minimum length
+                return cur_depth
+            if temp.left:
+                waitlist.insert(0,[temp.left,cur_depth+1])
+            if temp.right:
+                waitlist.insert(0,[temp.right,cur_depth+1])
+        '''
+        use waitlist to store the unchecked nodes
+        '''
