@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @param {TreeNode} p
+    # @param {TreeNode} q
+    # @return {TreeNode}
+    def lowestCommonAncestor(self, root, p, q):
+        while 1:
+            if p.val<root.val and q.val<root.val:
+                root=root.left
+            elif p.val>root.val and q.val>root.val:
+                root=root.right
+            else:
+                return root
+    '''
+    Binary Search Tree:
+    root.left<root.val<root.right
+    '''
