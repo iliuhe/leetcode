@@ -1,3 +1,4 @@
+import sys
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -28,3 +29,29 @@ class Solution:
         '''
         use waitlist to store the unchecked nodes
         '''
+        '''
+    def minDepth(self, root):
+        if not root:
+            return 0
+        waitlist=[(root,1)]
+        result=sys.maxint
+        while waitlist:
+            p,depth=waitlist.pop()
+            if not p.left and not p.right:
+                result=min(result,depth)
+            if p.left:
+                waitlist.insert(0,(p.left,depth+1))
+            if p.right:
+                waitlist.insert(0,(p.right,depth+1))
+        return result
+    '''
+    def minDepth(self,root):
+        if not root:
+            return 0
+        else:
+            if not root.left:
+                return self.minDepth(root.right)+1
+            elif not root.right:
+                return self.minDepth(root.left)+1
+            else:
+                return min(self.minDepth(root.right),self.minDepth(root.left))+1
