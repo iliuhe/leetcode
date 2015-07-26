@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {integer}
+    ''' iterative
+    def maxDepth(self, root):
+        if not root:
+            return 0
+        waitlist=[(root,1)]
+        result=0
+        while waitlist:
+            p,dep=waitlist.pop()
+            result=max(dep,result)
+            if p.left:
+                waitlist.insert(0,(p.left,dep+1))
+            if p.right:
+                waitlist.insert(0,(p.right,dep+1))
+        return result
+    ''' 
+    # recursive
+    def maxDepth(self,root):
+        if not root:
+            return 0
+        return 1+max(self.maxDepth(root.left),self.maxDepth(root.right))
