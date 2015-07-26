@@ -15,6 +15,8 @@ class Solution:
         waitlist=[[root,depth]]
         while waitlist:
             temp,cur_depth=waitlist.pop()
+            # search by each row, once node at this row ends
+            # it will be the result
             if not temp.left and not temp.right:
                 # once one node get both left and right nodes None
                 # it is minimum length
