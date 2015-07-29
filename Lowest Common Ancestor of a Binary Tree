@@ -26,3 +26,32 @@ class Solution:
         # searching to the bottom and not found) then return left or right
         return left or right
         
+    def lowestCommonAncestor(self, root, p, q):
+        nodeset=set([p,q])
+        waitlist=[]# save left child of node
+        lca=None
+        depth=-1
+        while root or waitlist:
+            if root:
+                if root in nodeset:
+            # once found the first node, the lca must be itself or already in list!
+                    nodeset.remove(root)
+                    if depth<0:# do only once when first node found
+                        lca=root
+                        depth=len(waitlist)
+                    if not nodeset:
+                        break
+            # travering from left to right
+                waitlist.append(root)
+                root=root.left
+            else:
+            # got bottom
+                root=waitlist.pop()
+                if depth>len(waitlist):
+                    lca=root
+                    depth=len(waitlist)
+                root=root.right
+        if nodeset:
+            return None
+        else:
+            return lca
