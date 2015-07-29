@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {integer[]}
+    def rightSideView(self, root):
+        if not root:
+            return []
+        result=[]
+        waitlist=[(root,1)]
+        while waitlist:
+            p,level=waitlist.pop()
+            if p:
+                if level>len(result):
+                    result.append(p.val)
+                waitlist.append((p.left,level+1))
+                waitlist.append((p.right,level+1))
+        return result
