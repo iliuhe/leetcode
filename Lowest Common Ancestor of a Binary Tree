@@ -13,9 +13,16 @@ class Solution:
     def lowestCommonAncestor(self, root, p, q):
         if not root or p==root or q==root:
             return root
+        # search the left sub tree for p or q
         left=self.lowestCommonAncestor(root.left,p,q)
+        # search the right sub tree for p o q
         right=self.lowestCommonAncestor(root.right,p,q)
+        # if one in left subtree, another in right subtree
+        # then the root is lca
         if left and right:
             return root
+        # other wise both p and q are in left subtree
+        # or right subtree,(if both in left, right should be none, for 
+        # searching to the bottom and not found) then return left or right
         return left or right
         
