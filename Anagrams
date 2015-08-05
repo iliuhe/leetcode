@@ -1,0 +1,17 @@
+class Solution:
+    # @param {string[]} strs
+    # @return {string[]}
+    def anagrams(self, strs):
+        # hash table
+        dic,result={},[]
+        for s in strs:
+            key=''.join(sorted(s))
+            if key in dic:
+                dic[key].append(s)
+            else:
+                dic[key]=[s]
+        for item in dic.values():
+            if len(item)>1:
+                result+=item
+        return result
+            
