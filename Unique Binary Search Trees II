@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+from itertools import product
+class Solution:
+    # @param {integer} n
+    # @return {TreeNode[]}
+    def generateTrees(self, n):
+        return self.bfs([i+1 for i in range(n)])
+  
+    def bfs(self,nums)：
+        result=[]
+        for i in range(len(nums)):
+            for l,r in product(self.bfs(nums[:i]),self.bfs(nums[i+1:])):# recursive
+                root=TreeNode(nums[i])
+                root.left,root.right=l,r
+                result.append(root)
+        return result or [None]
+            
