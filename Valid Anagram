@@ -1,0 +1,21 @@
+class Solution:
+    # @param {string} s
+    # @param {string} t
+    # @return {boolean}
+    def isAnagram(self, s, t):
+        #return sorted(s)==sorted(t)
+        dic={}
+        for c in s:
+            if c not in dic:
+                dic[c]=0
+            dic[c]+=1
+        for x in t:
+            if x not in dic:
+                return False
+            dic[x]-=1
+            if dic[x]<0:
+                return False
+        for k in dic.keys():
+            if dic[k]!=0:
+                return False
+        return True
