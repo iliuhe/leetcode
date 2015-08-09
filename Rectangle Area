@@ -1,0 +1,16 @@
+class Solution:
+    # @param {integer} A
+    # @param {integer} B
+    # @param {integer} C
+    # @param {integer} D
+    # @param {integer} E
+    # @param {integer} F
+    # @param {integer} G
+    # @param {integer} H
+    # @return {integer}
+    def computeArea(self, A, B, C, D, E, F, G, H):
+        a1=(C-A)*(D-B)
+        a2=(G-E)*(H-F)
+        h=max(0,min(H,D)-max(B,F))
+        w=max(0,min(C,G)-max(A,E))
+        return a1+a2-h*w
