@@ -1,0 +1,17 @@
+class Solution:
+    # @param {integer[]} nums
+    # @param {integer} target
+    # @return {integer[]}
+    def twoSum(self, nums, target):
+        '''
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
+        '''
+        dic={}
+        for idx,i in enumerate(nums):
+            if target-i in dic:
+                return [dic[target-i],idx+1]
+            dic[i]=idx+1
+        
