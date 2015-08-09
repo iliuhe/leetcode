@@ -1,0 +1,16 @@
+class Solution:
+    # @param {integer[]} nums
+    # @return {integer}
+    def rob(self, nums):
+        if not nums:
+            return 0
+        if len(nums)<=2:
+            return max(nums)
+        return max(self.h(nums[:-1]),self.h(nums[1:]))
+    def h(self,nums):
+        a,b=nums[0],max(nums[0],nums[1])
+        for i in range(2,len(nums)):
+            t=b
+            b=max(nums[i]+a,b)
+            a=t
+        return b
