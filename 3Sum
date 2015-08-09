@@ -1,0 +1,40 @@
+class Solution:
+    # @param {integer[]} nums
+    # @return {integer[][]}
+    def threeSum(self, nums):
+        '''
+        if len(nums)<3:
+            return []
+        result=[]
+        for i in range(len(nums)):
+            dic={}
+            for j in range(i+1,len(nums)):
+                for k in range(j+1,len(nums)):
+                    dic[nums[j]+nums[j]]=[j,k]
+            if -nums[i] in dic:
+                if sorted([nums[i],nums[dic[-nums[i]][0]],nums[dic[-nums[i]][1]]]) not in result:
+                    result.append(sorted([nums[i],nums[dic[-nums[i]][0]],nums[dic[-nums[i]][1]]]))
+        return result
+        '''
+        if len(nums)<3:
+            return []
+        nums.sort()
+        result=[]
+        for i in range(len(nums)-2):
+            j=i+1
+            k=len(nums)-1
+            while j<k:
+                if nums[j]+nums[k]<-1*nums[i]:
+                # cant doo nums[i]+nums[j]+nums[i]<0 !
+                    j+=1
+                elif nums[j]+nums[k]==-1*nums[i]:
+                    result.append([nums[i],nums[j],nums[k]])
+                    j,k=j+1,k-1
+                else:
+                    k-=1
+        res=[]
+        for item in result:
+            if item not in res:
+                res.append(item)
+        return res
+                
