@@ -1,0 +1,23 @@
+class Solution:
+    # @param {integer[]} nums
+    # @return {boolean}
+    def containsDuplicate(self, nums):
+        
+        #return len(set(nums))!=len(nums)
+        
+        
+        dic={}
+        for i in nums:
+            if i in dic:
+                return True
+            dic[i]=1
+        return False
+        
+        ''' not working
+        listt=[]
+        for i in nums:
+            if i in listt:
+                return True
+            listt.append(i)
+        return False
+        '''
