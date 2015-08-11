@@ -1,0 +1,21 @@
+class Solution:
+    # @param {string} s
+    # @param {string} t
+    # @return {boolean}
+    def isIsomorphic(self, s, t):
+        if len(s)!=len(t):
+            return False
+        dic1,dic2={},{}
+        for i in range(len(s)):
+            if s[i] not in dic1:
+                dic1[s[i]]=t[i]
+            else:
+                if t[i]!=dic1[s[i]]:
+                    return False
+        for i in range(len(t)):
+            if t[i] not in dic2:
+                dic2[t[i]]=s[i]
+            else:
+                if s[i]!=dic2[t[i]]:
+                    return False
+        return True
