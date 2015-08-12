@@ -1,0 +1,17 @@
+class Solution:
+    # @param {integer} x
+    # @return {integer}
+    def reverse(self, x):
+        x,r,neg=str(x),'',False
+        for i in x:
+            if i=='-':
+                neg=True
+            else:
+                r=i+r
+        # for overload case
+        if int(r)>0x7fffffff:
+            return 0
+        if neg:
+            return -int(r)
+        else:
+            return int(r)
