@@ -1,0 +1,17 @@
+class Solution:
+    # @param {string} s
+    # @return {integer}
+    def lengthOfLastWord(self, s):
+        if not s:
+            return 0
+        res,exist=0,False
+        for i in range(-1,-len(s)-1,-1):
+            if s[i]==' ':
+                if exist:
+                    return res
+            else:
+                exist=True
+                res+=1
+                if -i==len(s):
+                    return res
+        return res
