@@ -1,0 +1,9 @@
+class Solution:
+    # @param {integer} n
+    # @return {integer}
+    def trailingZeroes(self, n):
+        i,res=1,0
+        while 5**i<=n:
+            res+=n/(5**i)
+            i+=1
+        return res
