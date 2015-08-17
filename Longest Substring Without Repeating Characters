@@ -1,0 +1,14 @@
+class Solution:
+    # @param {string} s
+    # @return {integer}
+    def lengthOfLongestSubstring(self,s):
+        temp,start,res={},0,0
+        for i in range(len(s)):
+            if s[i] not in temp:
+                temp[s[i]]=i
+            else:
+                res=max(res,i-start)
+                start=max(temp[s[i]]+1,start)
+                temp[s[i]]=i
+            #print i,start,res
+        return max(res,len(s)-start)
