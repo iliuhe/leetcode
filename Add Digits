@@ -1,0 +1,16 @@
+class Solution:
+    # @param {integer} num
+    # @return {integer}
+    def addDigits(self,num):
+        #return (num-1)%9+1 if num>0 else 0
+        if num==0:
+            return 0
+        s=0
+        while s>9 or s==0:
+            s=0
+            while num>9:
+                s+=num%10
+                num=num//10
+            s+=num
+            num=s
+        return s
