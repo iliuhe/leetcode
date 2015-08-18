@@ -1,0 +1,16 @@
+class Solution:
+    # @param {string[]} strs
+    # @return {string}
+    def longestCommonPrefix(self, strs):
+        if not strs:
+            return ''
+        if len(strs)==1:
+            return strs[0]
+        strs=sorted(strs)
+        res,ref='',strs[0]
+        for c in range(len(ref)):
+            for i in range(1,len(strs)):
+                if ref[c]!=strs[i][c]:
+                    return res
+            res+=ref[c]
+        return res
