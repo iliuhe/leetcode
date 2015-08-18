@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        if not root:
+            return []
+        res,waitlist=[],[(root,'')]
+        while waitlist:
+            p,path=waitlist.pop()
+            if not p.left and not p.right:
+                res.append(path+str(p.val))
+            if p.right:
+                waitlist.append((p.right,path+str(p.val)+'->'))
+            if p.left:
+                waitlist.append((p.left,path+str(p.val)+'->')
+        return res
+            
