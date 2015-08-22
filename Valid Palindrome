@@ -1,0 +1,26 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if not s:
+            return True
+        i,j=0,len(s)-1
+        while i<j:
+            t1,t2=ord(s[i].upper()),ord(s[j].upper())
+            if (64<t1<91 or 47<t1<58) and (64<t2<91 or 47<t2<58):
+                if t1!=t2:
+                    return False
+                i+=1
+                j-=1
+            if not (64<t1<91 or 47<t1<58):
+                i+=1
+            if not (64<t2<91 or 47<t2<58):
+                j-=1
+        return True
+    '''
+    def isPalindrome(s):
+            s1 = ''.join(ch for ch in s if ch.isalnum()).lower()
+            return s1 == s1[::-1]
+    '''
