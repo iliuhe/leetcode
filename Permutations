@@ -1,0 +1,14 @@
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums)==1:
+            return [nums]
+        res=[]
+        # pick every i out of nums and permute others
+        for i in range(len(nums)):
+            for sub in self.permute(nums[:i]+nums[i+1:]):
+                res.append([nums[i]]+sub)
+        return res
