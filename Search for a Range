@@ -1,0 +1,19 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        def search(low,high):
+            if nums[low]==target==nums[high]:
+                return [low,high]
+            if nums[low]<=target<=nums[high]:
+                mid=(low+high)/2
+                l,h=search(low,mid),search(mid+1,high)
+                if -1 in l+h:
+                    return max(l,h)
+                else:
+                    return [l[0],h[-1]]
+            return [-1,-1]
+        return search(0,len(nums)-1)
