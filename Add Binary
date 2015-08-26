@@ -1,0 +1,34 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        m=len(a)-1
+        n=len(b)-1
+        res=''
+        if m>=n:
+            b='0'*(m-n)+b
+        else:
+            a='0'*(n-m)+a
+        c=0
+        for i in range(max(m,n),-1,-1):
+            s=int(a[i])+int(b[i])+c
+            if s==0:
+                res='0'+res
+                c=0
+            elif s==1:
+                res='1'+res
+                c=0
+            elif s==2:
+                res='0'+res
+                c=1
+            elif s==3:
+                res='1'+res
+                c=1
+        if c==0:
+            return res
+        else:
+            return '1'+res
+                
