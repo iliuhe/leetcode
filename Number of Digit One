@@ -1,0 +1,21 @@
+class Solution(object):
+    def countDigitOne(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        # 
+        if n<=0:
+            return 0
+        if n<10:
+            return 1
+        sum=n/10+1
+        if n%10==0:
+            sum-=1
+        for i in range(1,len(str(n))):
+            base=10**i
+            if n/base%10==1:
+                sum=sum+n%base+1+base*(n/(10*base))
+            else:
+                sum=sum+base*((n+9*base)/(10*base))
+        return sum
