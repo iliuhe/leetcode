@@ -1,0 +1,39 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        n=len(s)
+        if n<2:
+            return s
+        max_l=1
+        start=i=0
+        while i<n-max_l/2:
+            l=r=i
+            while r<n-1 and s[r]==s[r+1]:
+                r+=1
+            i=r+1
+            while l>0 and r<(n-1) and s[r+1]==s[l-1]:
+                r+=1
+                l-=1
+            if max_l<r-l+1:
+                max_l=r-l+1
+                start=l
+        return s[start:start+max_l]
+    '''
+        res=''
+        for i in xrange(len(s)):
+            t=self.search(s,i,i)
+            if len(t)>len(res):
+                res=t
+            t=self.search(s,i,i+1)
+            if len(t)>len(res):
+                res=t
+        return res
+    def search(self,s,l,r):
+        while l>=0 and r<len(s) and s[l]==s[r]:
+            l-=1
+            r+=1
+        return s[l+1:r]
+    '''    
