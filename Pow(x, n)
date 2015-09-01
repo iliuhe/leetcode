@@ -1,0 +1,22 @@
+class Solution(object):
+    def myPow(self,x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+    if (n<0):
+        n=-n
+        x=1/x
+        res=1
+        while n>0:
+            if n&1==1:
+                res*=x
+            x*=x
+            #print n
+            n>>=1# move left
+            #print n
+            #print x
+            #print res
+            #print ' '
+        return res
