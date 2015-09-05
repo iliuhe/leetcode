@@ -1,0 +1,76 @@
+class Solution(object):
+    def findSubstring(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        dic={}
+        for word in words:
+            if word in dic:
+                dic[word]+=1
+            else:
+                dic[word]=1
+        wl=len(words[0])
+        l=wl*len(words)
+        i,res=0,[]
+        while i<len(s)-l+1:
+            j,dic2=i,{}
+            while j<j+l:
+                t=s[j:j+wl]
+                if t not in dic:
+                    break
+                if t not in dic2:
+                    dic2[t]=dic[t]
+                dic2[t]-=1
+                if dic2[t]<0:
+                    break
+                j+=wl
+            if j==i+l:
+                res.append(i)
+                i+=l
+            else:
+                i+=1
+        return res
+        
+        ''' method 2
+        if len(words) == 0:
+            return []
+        # initialize d, l, ans
+        l = len(words[0])
+        d = {}
+        for w in words:
+            if w in d:
+                d[w] += 1
+            else:
+                d[w] = 1
+        i = 0
+        ans = []
+    
+        # sliding window(s)
+        for k in range(l):
+            left = k
+            subd = {}
+            count = 0
+            for j in xrange(k, len(s)-l+1, l):
+                tword = s[j:j+l]
+                # valid word
+                if tword in d:
+                    if tword in subd:
+                        subd[tword] += 1
+                    else:
+                        subd[tword] = 1
+                    count += 1
+                    while subd[tword] > d[tword]:
+                        subd[s[left:left+l]] -= 1
+                        left += l
+                        count -= 1
+                    if count == len(words):
+                        ans.append(left)
+                # not valid
+                else:
+                    left = j + l
+                    subd = {}
+                    count = 0
+        return ans
+        '''
