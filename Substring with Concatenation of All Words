@@ -28,9 +28,7 @@ class Solution(object):
                 j+=wl
             if j==i+l:
                 res.append(i)
-                i+=l
-            else:
-                i+=1
+            i+=1
         return res
         
         ''' method 2
