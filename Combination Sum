@@ -1,0 +1,38 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        '''
+        candidates=sorted(candidates)
+        stack,res=[],[]
+        for i in candidates:
+            stack.append([i,[i]])
+        while stack:
+            summ,listt=stack.pop()
+            if summ==target and sorted(listt) not in res:
+                res.append(sorted(listt))
+            for i in candidates:
+                if i+summ>target:
+                    break
+                stack.append([i+summ,listt+[i]])
+        return res
+        '''
+        candidates = sorted(candidates)
+        stack = [(0,0,[])]
+        res = []
+    
+        while stack:
+            total, start, nums = stack.pop()
+            if total == target:
+                res.append(nums)
+            for n in range(start, len(candidates)):
+                if n>0 and candidates[n] == candidates[n-1]:
+                    continue # break the loop once
+                t = total + candidates[n]
+                if t > target:
+                    break # break the loop
+                stack.append((t, n, nums + [candidates[n]]))
+        return res
