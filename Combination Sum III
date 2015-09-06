@@ -1,0 +1,17 @@
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        stack,res=[(0,1,[])],[]
+        while stack:
+            summ,start,listt=stack.pop()
+            if summ==n and len(listt)==k:
+                res.append(listt)
+            for i in xrange(start,10):
+                if summ+i>n:
+                    break
+                stack.append([summ+i,i+1,listt+[i]])
+        return res
