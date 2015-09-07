@@ -1,0 +1,28 @@
+class Solution(object):
+    def shortestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        '''
+        re=s[::-1]
+        left=s[1:][::-1]
+        mid=len(s)/2
+        while mid>=0:
+            if re[len(s)-mid:]==s[mid+1:mid+1+mid]:
+                left=s[mid+1+mid:][::-1]
+                break
+            if re[len(s)-mid:]==s[mid:mid+mid]:
+                left=s[mid+mid:][::-1]
+                break
+            mid-=1
+        return left+s
+        '''
+        if not s or len(s) == 1:
+            return s
+        j = 0
+        for i in reversed(range(len(s))):
+            if s[i] == s[j]:
+                j += 1
+        return s[::-1][:len(s)-j] + self.shortestPalindrome(s[:j-len(s)]) + s[j-len(s):]
+        
