@@ -1,0 +1,26 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        ''' o(n^2)
+        res=0
+        if len(prices)<2:
+            return res
+        for i in range(1,len(prices)):
+            if prices[i-1]<prices[i]:
+                for j in range(i-1,len(prices)):
+                    #print res,i,j
+                    if prices[j]-prices[i-1]>res:
+                        res=prices[j]-prices[i-1]
+        return res
+        '''
+        res=0
+        if len(prices)<2:
+            return res
+        t=prices[0]
+        for i in xrange(len(prices)):
+            t=min(t,prices[i])
+            res=max(res,prices[i]-t)
+        return res
