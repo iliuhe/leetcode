@@ -1,0 +1,25 @@
+class Solution(object):
+    def maximumGap(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)<2:
+            return 0
+        maxx,minn=max(nums),min(nums)
+        if maxx==minn:
+            return 0
+        buckets=[[2**32-1,-1] for _ in range(len(nums)+1)]
+        #rsize=len(nums)//(maxx-minn+1)
+        rsize=(maxx-minn+1.0)/len(nums)
+        for i in nums:
+            #idx=int((i-minn)*rsize)
+            idx=int((i-minn)//rsize)
+            buckets[idx][0]=min(i,buckets[idx][0])
+            buckets[idx][1]=max(i,buckets[idx][1])
+        res,pre=0,buckets[0][0]
+        for i in buckets:
+            if i!=[2**32-1,-1]:
+                res=max(res,i[0]-pre)
+                pre=i[1]
+        return res
