@@ -1,0 +1,23 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        dic=collections.defaultdict(set)
+        neigh=collections.defaultdict(set)
+        for i in prerequisites:
+            dic[i[0]].add(i[1])
+            neigh[i[1]].add(i[0])
+        stack=[i for i in range(numCourses) if not dic[i]]
+        res=[]
+        while stack:
+            t=stack.pop()
+            res.append(t)
+            for i in neigh[t]:
+                dic[i].remove(t)
+                if not dic[i]:
+                    stack.append(i)
+        return True if len(res)==numCourses else False
+        
