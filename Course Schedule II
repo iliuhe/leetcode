@@ -1,0 +1,29 @@
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        dic = {i: set() for i in xrange(numCourses)}
+        neigh = collections.defaultdict(set)# index can go out of bound
+        for i, j in prerequisites:
+            dic[i].add(j)
+            neigh[j].add(i)
+        # queue stores the courses which have no prerequisites
+        queue = [i for i in dic if not dic[i]]
+        res = []
+        while queue:
+            node = queue.pop(0) # bfs
+            # node=queue.pop() # dfs
+            res.append(node)
+            for i in neigh[node]:
+                # some nodes are not in neigh
+                # and it is []
+                dic[i].remove(node)
+                if not dic[i]:
+                    queue.append(i)
+        if len(res)== numCourses:
+            return res
+        else:
+            return []
