@@ -1,0 +1,35 @@
+class Solution(object):
+    def numberToWords(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        if num==0:
+            return 'Zero'
+        ddict = {1: 'One', 2: 'Two', 3: "Three", 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine',
+             10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15:'Fifteen', 16: 'Sixteen',
+             17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen', 20: 'Twenty', 30: 'Thirty', 40: 'Forty', 50: 'Fifty',
+             60: 'Sixty', 70: 'Seventy', 80: 'Eighty', 90: 'Ninety'}
+        base = ['', 'Thousand', 'Million', 'Billion']
+        res=''
+        i,t=0,0
+        while num:
+            t=num%1000
+            if t:
+                res=base[i]+' '+res
+                one=t%10
+                two=t%100-one
+                three=t/100
+                if two==10:
+                    res=ddict[one+two]+' '+res
+                else:
+                    if one:
+                        res=ddict[one]+' '+res
+                    if two:
+                        res=ddict[two]+' '+res
+                if three:
+                    res=ddict[three]+' Hundred '+res
+            num=num/1000
+            i+=1
+        return res.rstrip()
+                
