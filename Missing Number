@@ -1,0 +1,10 @@
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        temp=len(nums)*(len(nums)+1)*0.5
+        for i in nums:
+            temp-=i
+        return int(temp)
