@@ -1,0 +1,29 @@
+class Solution(object):
+    def isNumber(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        ncan = "0123456789"
+        s = s.strip()
+        l = len(s)
+        dp = [False] * (l + 1)
+        tmpset = set()
+
+        for i, v in enumerate(s):
+            if v in ncan: dp[i + 1] = True
+            else:
+                if v == ".":
+                    if v in tmpset or "e" in tmpset: return False
+                    else: 
+                        tmpset.add(v)
+                        dp[i + 1] = dp[i]
+                elif v == "e":
+                    if v in tmpset or dp[i] == False: return False
+                    else:
+                        tmpset.add(v)
+                elif v in "-+":
+                    if i != 0 and s[i - 1] != "e": return False
+                else: return False
+        return dp[-1]
+        
