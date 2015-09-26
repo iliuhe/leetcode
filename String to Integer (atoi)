@@ -1,0 +1,36 @@
+class Solution(object):
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        s,flag,sign,sign_flag=0,False,1,False
+        if not str:
+            return 0
+        for i in str:
+            #print i==' '
+            if 48<=ord(i)<=57:
+                t=ord(i)-48
+                s=s*10+t
+                flag=True
+            elif i==' ':
+                if flag or sign_flag:
+                    return self.returning(s*sign)
+                pass
+            elif i=='+' or i=='-':
+                if sign_flag:
+                    return self.returning(s*sign)
+                if i=='-':
+                    sign=-1
+                sign_flag=True
+            else:
+                return self.returning(s*sign)
+        return self.returning(s*sign)
+        
+    def returning(self,x):
+        if x>2147483647:
+            return 2147483647
+        elif x<-2147483648:
+            return -2147483648
+        else:
+            return x
